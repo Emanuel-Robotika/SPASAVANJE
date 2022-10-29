@@ -36,15 +36,19 @@ void RobotLine::radionica() {
     } else {
       go(80, 80);
     }
-  } else if (!prolazak) {
+  }
+  else if (!prolazak) {
+    go(30, 0);
+    delayMs(300);
     go(40, 40);
     delayMs(1200);
     go(-40, - 40);
     delayMs(1200);
-    go(100, -100);
-    delayMs(550);
+    go(90, -90);
+    delayMs(400);
     prolazak = true;
-  } else if (prolazak && broj != 6) {
+  } 
+  else if (prolazak && broj != 6) {
     if (front() < 200) {
       go(90, -90);
       delayMs(600);
