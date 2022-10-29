@@ -36,44 +36,38 @@ void RobotLine::radionica() {
     } else {
       go(80, 80);
     }
-  }
-  else if (!prolazak) {
+  } else if (!prolazak) {
     go(30, 0);
     delayMs(300);
     go(40, 40);
     delayMs(1200);
-    go(-40, - 40);
+    go(-60, - 60);
     delayMs(1200);
     go(90, -90);
-    delayMs(400);
+    delayMs(200);
     prolazak = true;
-  } 
-  else if (prolazak && broj != 6) {
-    if (front() < 200) {
+  } else if (prolazak && broj != 7) {
+    if (front() < 120) {
       go(90, -90);
-      delayMs(600);
+      delayMs(400);
       broj = 6;
+    } else if (front() > 330 && leftFront() > 300 && broj == 6) {
+      go(30, 100);
+      delayMs(1000);
     } else {
       if (rightFront() < leftFront()) {
         if (rightFront() < 80) {
           go(50, 60);
         }
       } else if (rightFront() > leftFront()) {
-        if (leftFront() < 80) {
+        if (leftFront() < 60) {
           go(60, 50);
         }
-      } else {
+      }  else if (!line(0) && !line(3) && !line(5) && !line(7)) {
         go(80, 80);
+      } else {
+        broj += 1;
       }
-    }
-  } else if (prolazak && broj == 6) {
-    if (front() > 330 && leftFront() > 300) {
-      go(50, 100);
-      delayMs(1000);
-    } else if (!lineAny()) {
-      go(80, 80);
-    } else {
-      broj = 7;
     }
   } else {
     stop();
